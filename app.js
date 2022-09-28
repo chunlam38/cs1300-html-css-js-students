@@ -26,15 +26,19 @@ const updatePage = async () => {
 
   // Make API request and get an array of fruit objects
   const fruitsArray = await apiRequest();
-  // console.log(fruitsArray);
-
   // TODO: Use either `map` and/or `filter` to extract some data from the array of fruit objects
+  const keyArray = fruitsArray.filter((fruit) => {
+    return fruit.nutritions.sugar > 15;
+  })
+  console.log(keyArray);
   // For example, find "name of all fruits whose sugar > 15",
 
   // TODO: Create a new HTML element to display your data
-
-  // TODO: Append your new element to the page
-
+   for (let i = 0; i<keyArray.length; i++) {
+    const fruit_name = document.createElement("div");
+    fruit_name.innerHTML = keyArray[i].name;
+    gallery.append(fruit_name);
+   }
 }
 
 // SAMPLE CODE of how to create and append a new HTML element to the page
@@ -55,3 +59,4 @@ const exampleAddElement = () => {
 // do not touch - stencil code to add the proxy to avoid CORS
 const PROXY_URL = 'https://cs1300-cors-anywhere.herokuapp.com/'
 const buildProxyEndpoint = (endpoint) => `${PROXY_URL}${endpoint}`;
+
